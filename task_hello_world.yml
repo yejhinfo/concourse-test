@@ -1,23 +1,29 @@
 ---
 resources:
-  - name: tutorial
+  - name: mytutorial
     type: git
     source:
-      uri: https://github.com/starkandwayne/concourse-tutorial.git
-      branch: develop
+      uri: https://github.com/yejhinfo/concourse-test.git
+      branch: main
 
-plan:
-    - get: tutorial
-      trigger: true
-    - task: test-sometimes-works
-      config:
-        platform: linux
-        image_resource:
-          type: docker-image
-          source: {repository: busybox}
-        inputs:
-          - name: tutorial
-        outputs:
-          - name: notify_message
-        run:
-          path: tutorial/tutorials/miscellaneous/slack-notifications/test-sometimes-works-notify-message.sh
+jobs:
+  - name: test
+    public: true
+    serial: true
+    plan:
+      - get: mytutorial
+        trigger: true
+      - task: test-sometimes-works
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          inputs:
+            - name: mytutorial
+          run:
+            path: mytutorial/test-sometimes-works-notify-message.sh
+        on_success:
+          task: alert
+          file:  mytutorial/task_hello_world.yml 
+
