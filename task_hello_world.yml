@@ -16,4 +16,4 @@ image_resource:
   source: {repository: busybox}
 
 run:
-  path: main/test-sometimes-works-notify-message.sh
+  path: mytutorial/test-sometimes-works-notify-message.sh
