@@ -1,8 +1,12 @@
 ---
 platform: linux
 
+image_resource:
+  type: docker-image
+  source: {repository: busybox}
+
 inputs:
-  - name: mytutorial
-    optional: true
+  nanme: mytutorial
+
 run:
   path: mytutorial/test-sometimes-works-notify-message.sh
