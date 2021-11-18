@@ -1,19 +1,37 @@
 ---
+resource_types:
+  - name: slack-notification
+    type: docker-image
+    source:
+      repository: cfcommunity/slack-notification-resource
 
 resources:
-  - name: mytutorial
+  - name: notify
+    type: slack-notification
+    source:
+      url: https://hooks.slack.com/services/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
+  - name: tutorial
     type: git
     source:
-      uri: https://github.com/yejhinfo/concourse-test.git
-      branch: main
+      uri: https://github.com/starkandwayne/concourse-tutorial.git
+      branch: develop
 
-platform: linux
-
-image_resource:
-  get: mytutorial
-  trigger: true
-  type: docker-image
-  source: {repository: busybox}
-
-run:
-  path: mytutorial/test-sometimes-works-notify-message.sh
+jobs:
+  - name: test
+    public: true
+    serial: true
+    plan:
+      - get: tutorial
+        trigger: true
+      - task: test-sometimes-works
+        config:
+          platform: linux
+          image_resource:
+            type: docker-image
+            source: {repository: busybox}
+          inputs:
+            - name: tutorial
+          outputs:
+            - name: notify_message
+          run:
+            path: tutorial/tutorials/miscellaneous/slack-notifications/test-sometimes-works-notify-message.sh
