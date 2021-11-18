@@ -5,8 +5,9 @@ image_resource:
   type: docker-image
   source: {repository: busybox}
 
-input:
+inputs:
   nanme: mytutorial
 
 run:
-  path: mytutorial/test-sometimes-works-notify-message.sh
+  path: bash
+  args: mytutorial/test-sometimes-works-notify-message.sh
