@@ -6,14 +6,8 @@ image_resource:
   source:
     repository: golang
     tag: '1.6'
-
-params:
-  SOME_PARAM: some-default-value
-
 inputs:
 - name: mytutorial
-
-
 run:
   path: sh
   args:
