@@ -14,16 +14,7 @@ inputs:
 - name: mytutorial
 
 
-outputs:
-- name: some-output
-
 run:
   path: sh
   args:
-  - -exc
-  - |
-    whoami
-    env
-    go version
-    find .
-    touch some-output/my-built-artifact
+  - mytutorial/test-sometimes-works-notify-message.sh
