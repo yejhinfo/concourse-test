@@ -1,14 +1,23 @@
 ---
-jobs:
-  - name: job-hello-world
-    public: true
-    plan:
-      - task: hello-world
-        config:
-          platform: linux
-          image_resource:
-            type: docker-image
-            source: {repository: busybox}
-          run:
-            path: echo
-            args: [hello world]
+resources:
+  - name: tutorial
+    type: git
+    source:
+      uri: https://github.com/starkandwayne/concourse-tutorial.git
+      branch: develop
+
+plan:
+    - get: tutorial
+      trigger: true
+    - task: test-sometimes-works
+      config:
+        platform: linux
+        image_resource:
+          type: docker-image
+          source: {repository: busybox}
+        inputs:
+          - name: tutorial
+        outputs:
+          - name: notify_message
+        run:
+          path: tutorial/tutorials/miscellaneous/slack-notifications/test-sometimes-works-notify-message.sh
