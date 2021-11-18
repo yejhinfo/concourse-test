@@ -11,9 +11,8 @@ params:
   SOME_PARAM: some-default-value
 
 inputs:
-- name: some-input
-- name: some-input-with-custom-path
-  path: some/custom/path
+- name: mytutorial
+
 
 outputs:
 - name: some-output
