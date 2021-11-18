@@ -1,37 +1,14 @@
 ---
-resource_types:
-  - name: slack-notification
-    type: docker-image
-    source:
-      repository: cfcommunity/slack-notification-resource
-
-resources:
-  - name: notify
-    type: slack-notification
-    source:
-      url: https://hooks.slack.com/services/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
-  - name: tutorial
-    type: git
-    source:
-      uri: https://github.com/starkandwayne/concourse-tutorial.git
-      branch: develop
-
 jobs:
-  - name: test
+  - name: job-hello-world
     public: true
-    serial: true
     plan:
-      - get: tutorial
-        trigger: true
-      - task: test-sometimes-works
+      - task: hello-world
         config:
           platform: linux
           image_resource:
             type: docker-image
             source: {repository: busybox}
-          inputs:
-            - name: tutorial
-          outputs:
-            - name: notify_message
           run:
-            path: tutorial/tutorials/miscellaneous/slack-notifications/test-sometimes-works-notify-message.sh
+            path: echo
+            args: [hello world]
