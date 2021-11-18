@@ -2,12 +2,29 @@
 platform: linux
 
 image_resource:
-  type: docker-image
-  source: {repository: busybox}
+  type: registry-image
+  source:
+    repository: golang
+    tag: '1.6'
+
+params:
+  SOME_PARAM: some-default-value
 
 inputs:
-  nanme: mytutorial
+- name: some-input
+- name: some-input-with-custom-path
+  path: some/custom/path
+
+outputs:
+- name: some-output
 
 run:
-  path: bash
-  args: mytutorial/test-sometimes-works-notify-message.sh
+  path: sh
+  args:
+  - -exc
+  - |
+    whoami
+    env
+    go version
+    find .
+    touch some-output/my-built-artifact
