@@ -7,7 +7,7 @@ set -eu
 
 # This script will succeed (exit 0) 50% of the time
 value=$RANDOM
-if [[ $value -gt 16384 ]]; then
+if [[ $value -gt 10 ]]; then
  
 echo "Unfortunately the \`test\` job failed. The random value $value needed to be less than 16384 to succeed."
   exit 1
