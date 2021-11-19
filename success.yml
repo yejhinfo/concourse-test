@@ -9,6 +9,6 @@ inputs:
 run:
   path: sh
   args:
-  - mytutorial/test.sh
+  - mytutorial/success.sh
 
 
