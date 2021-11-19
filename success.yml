@@ -1,9 +1,7 @@
 ---
-platform: linux
+platform: windows
 
-image_resource:
-  type: docker-image
-  source: {repository: Ubuntun}
+
 
 inputs:
 - name: mytutorial
