@@ -11,8 +11,4 @@ inputs:
 run:
   path: sh
   args:
-  - ls
-  - |
-    env
-
-
+  - mytutorial/fail.sh
