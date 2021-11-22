@@ -10,7 +10,4 @@ inputs:
 run:
   path: sh
   args:
-  - ls
-  - |
-    env
-
+  - mytutorial/success.sh
