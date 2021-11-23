@@ -23,4 +23,4 @@ apt-get update
 apt-get -y install curl
 status=`curl  http://10.0.2.15:8080/api/v1/teams/main/pipelines/tutorial-pipeline/jobs/test/builds/50 -X GET -H "Authorization: bearer wFimuRjZsV3rlg13iSs0uuBjMY4MgnhjAAAAAA"  | grep -Po '"status"[" :]+\K[^"]+'
 `
-curl -d "id=2333&return_code=2222&setup_url=$status&md5=0000" -X POST http://10.0.2.15:8081/finish_task
+curl -d "id=2333&return_code=2222&setup_url=$status&md5=0000" -X POST http://10.0.2.15:8082/finish_task
