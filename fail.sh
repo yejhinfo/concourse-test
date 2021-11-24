@@ -21,6 +21,6 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted univer
 EOF
 apt-get update
 apt-get -y install curl
-curl -d "return_code=fail" -X POST http://10.0.2.15:8082/finish_task
+curl -d "return_code=-2" -X POST http://10.0.2.15:8082/finish_task
 
 
