@@ -8,6 +8,8 @@ image_resource:
 inputs:
 - name: mytutorial
 run:
-  path: sh
-  args:
-  - mytutorial/status.sh
+  path: env
+  args: []
+params:
+  CAT_NAME: ((cat))
+  DOG_NAME: ((dog)) 
