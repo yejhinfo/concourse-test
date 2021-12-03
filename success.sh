@@ -10,3 +10,4 @@ echo "--success--"
   export cat=admin
   export dog=123
 
+env
